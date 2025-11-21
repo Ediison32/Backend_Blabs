@@ -1,17 +1,1 @@
 
-# Ignore all appsettings
-appsettings.json
-appsettings.Development.json
-appsettings.Local.json
-
-# Ignore ANY appsettings inside projects
-**/appsettings*.json
-
-
-# Sensitive configs
-**/appsettings*.json
-
-
-# Sensitive configs
-**/appsettings*.json
-
