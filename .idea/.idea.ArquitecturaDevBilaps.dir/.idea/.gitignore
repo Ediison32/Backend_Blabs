@@ -12,10 +12,3 @@
 /dataSources/
 /dataSources.local.xml
 
-# Build folders
-**/bin/
-**/obj/
-
-# Sensitive configs
-**/appsettings*.json
-
