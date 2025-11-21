@@ -1,19 +1,19 @@
-# STAGE 1 - BUILD
+# STAGE 1
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-COPY src/ProyectoBilaps.Domain/ProyectoBilaps.Domain.csproj ProyectoBilaps.Domain/
-COPY src/ProyectoBilaps.Application/ProyectoBilaps.Application.csproj ProyectoBilaps.Application/
-COPY src/ProyectoBilaps.Infrastructure/ProyectoBilaps.Infrastructure.csproj ProyectoBilaps.Infrastructure/
-COPY src/ProyectoBilaps.Presentation/ProyectoBilaps.Presentation.csproj ProyectoBilaps.Presentation/
+COPY ProyectoBilaps/src/ProyectoBilaps.Domain/ProyectoBilaps.Domain.csproj ProyectoBilaps.Domain/
+COPY ProyectoBilaps/src/ProyectoBilaps.Application/ProyectoBilaps.Application.csproj ProyectoBilaps.Application/
+COPY ProyectoBilaps/src/ProyectoBilaps.Infrastructure/ProyectoBilaps.Infrastructure.csproj ProyectoBilaps.Infrastructure/
+COPY ProyectoBilaps/src/ProyectoBilaps.Presentation/ProyectoBilaps.Presentation.csproj ProyectoBilaps.Presentation/
 
 RUN dotnet restore ProyectoBilaps.Presentation/ProyectoBilaps.Presentation.csproj
 
-COPY src/ .
+COPY ProyectoBilaps/src/ .
 
 RUN dotnet publish ProyectoBilaps.Presentation/ProyectoBilaps.Presentation.csproj -c Release -o /app/publish
 
-# STAGE 2 - RUNTIME
+# STAGE 2
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
